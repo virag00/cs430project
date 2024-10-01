@@ -1,0 +1,47 @@
+expression      = additive
+
+logical         = logical && relational
+                | logical || relational
+                | relational
+
+relational      = relational == bitwise
+                | relational != bitwise
+                | relational < bitwise
+                | relational <= bitwise
+                | relational > bitwise
+                | relational >= bitwise
+                | bitwise
+
+bitwise         = bitwise & additive
+                | bitwise | additive
+                | bitwise ^ additive
+                | bitwise << additive
+                | bitwise >> additive
+                | additive 
+
+additive        = additive + multiplicative
+                | additive - multiplicative
+                | multiplicative
+
+multiplicative  = multiplicative * statistical
+                | multiplicative / statistical
+                | multiplicative % statistical
+                | statistical
+
+exponentiation  = unary ** exponentiation
+                | unary
+
+unary           = !unary
+                | ~unary
+                | -unary
+                | primary
+
+primary         = INT | FLOAT | BOOL
+                | ( expression )
+                | # [ expression , expression ]
+                | [ expression , expression ]
+                | max ( expression , expression )
+                | min ( expression , expression )
+                | mean ( expression , expression )
+                | sum ( expression , expression )
+                | float ( expression )
